@@ -22,6 +22,6 @@
 	       (:file "fr-ca")
 	       (:file "ko")
 	       (:file "pt")
-	       (:file "pt-bt")
+	       (:file "pt-br")
 	       (:file "zh-cn")
 	       (:file "zh-tw")))))
