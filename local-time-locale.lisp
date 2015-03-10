@@ -82,6 +82,12 @@
 (defmethod post-format (string (locale locale))
   string)
 
+(defmethod get-long-date-format (key (locale locale))
+  (cdr (assoc key (long-date-formats locale) :test 'string=)))
+
+(defmethod set-long-date-format (key (locale locale) string)
+  (setf (cdr (assoc key (long-date-formats locale) :test 'string=)) string)) 
+
 (defmethod make-locale (name)
   (error "failed to find locale ~a" name))
 
