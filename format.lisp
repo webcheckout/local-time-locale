@@ -64,7 +64,7 @@
 		     (ordinal format ,@body)))))))
 
 (define-format-function ("M" :ordinal t :padded t)
-  (1+ month))
+  month)
 
 (define-format-function ("MMM")
   (short-month-name month format))
@@ -170,7 +170,7 @@
 (define-format-function ("Q")
     (ceiling month 3))
 
-;; TODO: The followign format directives have yet to be implemented
+;; TODO: The following format directives have yet to be implemented
 ;;
 
 ;; w :ordinal t :padded t
