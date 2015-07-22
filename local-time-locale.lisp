@@ -78,7 +78,7 @@
                 (2 "nd")
                 (3 "rd")
                 (t "th")))))
-
+ 
 (defmethod post-format (string (locale locale))
   string)
 
@@ -88,28 +88,5 @@
 (defmethod set-long-date-format (key (locale locale) string)
   (setf (cdr (assoc key (long-date-formats locale) :test 'string=)) string)) 
 
-(defmethod make-locale (name)
-  (error "failed to find locale ~a" name))
-
-(defmethod get-locale ((name string))
-  (get-locale (intern (string-upcase name) 'keyword)))
-  
-(defmethod get-locale ((name symbol))
-  (or (gethash name *locale-cache*)
-      (setf (gethash name *locale-cache*)
-	    (make-locale name))))
-
-(defmacro with-locale (locale-name &rest body)
-  `(let* ((*default-locale* (get-locale ,locale-name)))
-     ,@body))
-
-(defun set-locale (locale-name)
-  (let ((locale (get-locale locale-name)))
-    (setf *default-locale* locale)))
-
-(defclass locale-en (locale) ())
-
-(defmethod make-locale ((class (eql :en)))
-  (make-instance 'locale-en))
-
-(set-locale :en)
+ (defmethod make-locale (name)
+   nil)

@@ -1,16 +1,9 @@
 (in-package :local-time-locale)
 
-(defun language-tag-delimiterp (c) (or (char= c #\-) (char= c #\_)))
-
-(defun split-string (string &key (delimiterp #'language-tag-delimiterp))
-  (loop :for beg = (position-if-not delimiterp string)
-    :then (position-if-not delimiterp string :start (1+ end))
-    :for end = (and beg (position-if delimiterp string :start beg))
-    :when beg :collect (subseq string beg end)
-    :while end))
-
 (defmethod %get-locale ((name string))
-  (%get-locale (intern (string-upcase name) 'keyword)))
+  "We accept either - or _ seperated values in our string and are case
+insenstive"
+  (%get-locale (intern (substitute #\- #\_ (string-upcase name)) 'keyword)))
 
 (defmethod %shortened-locale ((locale symbol))
   (let ((string (symbol-name locale)))
