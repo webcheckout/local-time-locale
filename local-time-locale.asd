@@ -50,7 +50,7 @@
 	       (:file "pt-br")  ;; Brazil Portuguese
 	       (:file "pt-pt")  ;; Portual Portuguese
 	       (:file "sv")     ;; Sweden Swedish
-	       (:file "sv_SE")  ;; Sweden Swedish
+	       (:file "sv-se")  ;; Sweden Swedish
 	       (:file "zh")     ;; Peoples Republic of China Chinese
 	       (:file "zh-cn")  ;; Peoples Republic of China Chinese
 	      ; (:file "zn-hk")  ;; Hong Kong Chinese
