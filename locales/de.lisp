@@ -21,11 +21,7 @@
       ("L" . "DD.MM.YYYY")
       ("LL" . "D. MMMM YYYY")
       ("LLL" . "D. MMMM YYYY LT")
-      ("LLLL" . "dddd, D. MMMM YYYY LT")
-      ("l" . "DD.MM.YYYY")
-      ("ll" . "D. MMMM YYYY")
-      ("lll" . "D. MMMM YYYY LT")
-      ("llll" . "dddd, D. MMMM YYYY LT"))))
+      ("LLLL" . "dddd, D. MMMM YYYY LT"))))
 	
    
 (defmethod get-ordinal (number token (locale locale-de))

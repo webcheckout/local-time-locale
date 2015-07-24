@@ -36,6 +36,8 @@
 	       (:file "fr")     ;; France French
 	       (:file "fr-ca")  ;; Canada French
 	       (:file "fr-fr")  ;; France French
+	       (:file "ja")     ;; Japanese
+	       (:file "ja-jp")  ;; Japan Japanese
 	       (:file "ko")     ;; Republic of Korea Korean
 	       (:file "ko-kr")  ;; Republic of Korea Korean
 	       (:file "nb")     ;; Norway Bokmål

@@ -26,9 +26,6 @@
       ("lll"  . "YYYY年MMMD日LT")
       ("llll" . "YYYY年MMMD日ddddLT"))))
 
-(defmethod make-locale ((class (eql :zh)))
-  (make-instance 'locale-zh))
-
 (defmethod get-ordinal (number token (locale locale-zh))
   (declare (ignore locale))
            (cond ((or (string= token "do")
@@ -51,3 +48,6 @@
 	  ((< hm 1230) "中午")
 	  ((< hm 1800) "下午")
 	  (t "晚上"))))
+
+(defmethod make-locale ((class (eql :zh)))
+  (make-instance 'locale-zh))

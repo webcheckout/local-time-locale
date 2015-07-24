@@ -88,5 +88,13 @@
 (defmethod set-long-date-format (key (locale locale) string)
   (setf (cdr (assoc key (long-date-formats locale) :test 'string=)) string)) 
 
- (defmethod make-locale (name)
-   nil)
+(defmethod make-locale (name)
+  nil)
+
+(defvar *locales* (make-hash-table :test #'equal))
+
+(defmethod register-locale (name label class)
+  ;; this should eventually replace the subclass make-locale calls
+  (declare (ignore class))
+  (setf (gethash name *locales*) label))
+  
