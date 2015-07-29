@@ -29,6 +29,11 @@ insenstive"
   (let ((locale (%get-locale locale-name)))
     (setf *default-locale* locale)))
 
+(defun first-day-of-the-week ()
+  (if *default-locale*
+      (get-first-day-of-week *default-locale*)
+      0))
+
 ;; Set the default.  See comment in local-time-locale about the
 ;; authors nationality.
 (set-locale :en-us)
