@@ -54,14 +54,14 @@
 	     ,@body))
      ,@(when padded
 	     `((setf (gethash ,(format nil "~a~a" key key) *format-functions*)
-		   (lambda (out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
-		     (declare #+sbcl (sb-ext:muffle-conditions style-warning))
-		     (format nil "~2,'0d" ,@body)))))
+		     (lambda (out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
+		       (declare #+sbcl (sb-ext:muffle-conditions style-warning))
+		       (format nil "~2,'0d" ,@body)))))
      ,@(when ordinal
 	     `((setf (gethash ,(format nil "~ao" key) *format-functions*)
-		   (lambda (out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
-		     (declare #+sbcl (sb-ext:muffle-conditions style-warning))
-		     (ordinal format ,@body)))))))
+		     (lambda (out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
+		       (declare #+sbcl (sb-ext:muffle-conditions style-warning))
+		       (ordinal format ,@body)))))))
 
 (define-format-function ("M" :ordinal t :padded t)
   month)
@@ -197,7 +197,6 @@
 ;; GGGGG
 ;;   return leftZeroFill(this.isoWeekYear(), 5);
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; FORMAT STRING HANDLING AND TIMESTAMP FORMATING
 
@@ -219,28 +218,48 @@
    locale))
 
 (defun expand-format (format locale)
-  (when format 
-    (cl-ppcre::regex-replace-all *local-formatting-tokens* format
-				 (lambda (x s e ms me rs re)
-				   (declare (ignore s e rs re))
-				   (let ((match (subseq x ms me)))
-				     (if (char= (char match 0) #\[)
-					 match
-					 (long-date-format match locale)))))))
+  (when format
+    (or (dt::get (format-lru locale) format)
+	(let ((ex-format (cl-ppcre::regex-replace-all *local-formatting-tokens* format
+					   (lambda (x s e ms me rs re)
+					     (declare (ignore s e rs re))
+					     (let ((match (subseq x  ms me)))
+					       (if (char= (char match 0) #\[)
+						   match
+						   (long-date-format match locale)))))))
+	  (dt::set (format-lru locale) format ex-format)
+	  ex-format))))
 
+(defun my-funcall (function out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
+  (funcall function out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format))
+
+(defvar *token-lru* (make-instance 'dt::lru :size 10))
+
+(defun %tokenize-format (format)
+  (when format
+    (or (dt::get *token-lru* format)
+	(let ((tokens (cl-ppcre::all-matches-as-strings ltl::*formatting-tokens* format)))
+	  (dt::set *token-lru* format tokens)
+	  tokens))))
+  
 (defun format-timestamp (timestamp format &key (timezone local-time::*default-timezone*) (locale *default-locale*))
   (multiple-value-bind (nsec sec minute hour day month year weekday daylight-p offset abbrev)
       (local-time::decode-timestamp timestamp :timezone timezone)
     (let ((string (expand-format format locale)))
       (with-output-to-string (out)
-	(cl-ppcre::do-matches (s e *formatting-tokens* string nil)
-	  (let* ((token (subseq string s e))
-		 (function (gethash token *format-functions*)))
+	(dolist (token (%tokenize-format string))
+	  (let ((function (gethash token *format-functions*)))
 	    (if function
 		(princ (funcall function out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format) out)
-		(if (and
-		     (char= #\[ (schar string s))
-		     (char= #\] (schar string (1- e))))
-		    (princ (subseq string (1+ s) (1- e)) out)
-		    (princ (subseq string s e) out)))))))))
+		(let ((l (length token)))
+		  (if (and
+		       (char= #\[ (schar token 0))
+		       (char= #\] (schar token (1- l))))
+		    (princ (subseq token 1 (1- l)) out)
+		    (princ token out))))))))))
 
+
+
+
+    
+       

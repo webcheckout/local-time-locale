@@ -44,7 +44,10 @@
 				       ("L"    . "MM/DD/YYYY")
 				       ("LL"   . "MMMM D, YYYY")
 				       ("LLL"  . "MMMM D, YYYY LT")
-				       ("LLLL" . "dddd, MMMM D, YYYY LT")))))
+				       ("LLLL" . "dddd, MMMM D, YYYY LT")))
+
+   (format-lru             :accessor format-lru
+			   :initform  (make-instance 'dt::lru :size 10))))
 
 (defmethod get-month-name (month format (locale locale))
   (aref (month-names locale) month))
