@@ -10,11 +10,11 @@
     #("" "ene" "feb" "mar" "abr" "may" "jun" "jul" "ago" "sep"
       "oct" "nov" "dic'")
     :weekday-names
-    #("" "domingo" "lunes" "martes" "miércoles" "jueves" "viernes" "sábado'")
+    #("domingo" "lunes" "martes" "miércoles" "jueves" "viernes" "sábado'")
     :short-weekday-names
-    #("" "dom." "lun." "mar." "mié." "jue." "vie." "sáb.")
+    #("dom." "lun." "mar." "mié." "jue." "vie." "sáb.")
     :minimal-weekday-names
-    #("" "Do" "Lu" "Ma" "Mi" "Ju" "Vi" "Sá")
+    #("Do" "Lu" "Ma" "Mi" "Ju" "Vi" "Sá")
     
     :long-date-formats
     '(("LT"   . "H:mm")
