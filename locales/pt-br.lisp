@@ -1,6 +1,6 @@
 (in-package :local-time-locale)
 
-(defclass locale-pt-by (locale-pt) ()
+(defclass locale-pt-br (locale-pt) ()
   (:default-initargs   
    :first-day-of-week 0))
 
