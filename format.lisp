@@ -233,7 +233,7 @@
 (defun my-funcall (function out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
   (funcall function out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format))
 
-(defvar *token-lru* (make-instance 'dt::lru :size 10))
+(defvar *token-lru* (make-instance 'dt::lru :max-size 10))
 
 (defun %tokenize-format (format)
   (when format

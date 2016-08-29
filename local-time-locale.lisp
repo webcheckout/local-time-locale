@@ -47,7 +47,7 @@
 				       ("LLLL" . "dddd, MMMM D, YYYY LT")))
 
    (format-lru             :accessor format-lru
-			   :initform  (make-instance 'dt::lru :size 10))))
+			   :initform  (make-instance 'dt::lru :max-size 10))))
 
 (defmethod get-month-name (month format (locale locale))
   (aref (month-names locale) month))
