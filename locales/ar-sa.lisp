@@ -1,0 +1,29 @@
+(in-package :local-time-locale)
+
+(defclass locale-ar-sa (locale) ()
+  (:default-initargs
+    :first-day-of-week 0
+    :month-names
+    #("" "يناير" "فبراير" "مارس" "أبريل" "مايو" "يونيو" "يوليو" "أغسطس" "سبتمبر" "أكتوبر" "نوفمبر" "ديسمبر")
+    :short-month-names
+    #("" "يناير" "فبراير" "مارس" "أبريل" "مايو" "يونيو" "يوليو" "أغسطس" "سبتمبر" "أكتوبر" "نوفمبر" "ديسمبر")
+    :weekday-names
+    #("الأحد" "الإثنين" "الثلاثاء" "الأربعاء" "الخميس" "الجمعة" "السبت")
+    :short-weekday-names
+    #("أحد" "إثنين" "ثلاثاء" "أربعاء" "خميس" "جمعة" "سبت")
+    :minimal-weekday-names
+    #("ح" "ن" "ث" "ر" "خ" "ج" "س")
+    
+    :long-date-formats
+    '(("LT"   . "HH:mm")
+      ("L"    . "DD/MM/YYYY")
+      ("LL"   . "D MMMM YYYY")
+      ("LLL"  . "D MMMM YYYY HH:mm")
+      ("LLLL" . "dddd D MMMM YYYY HH:mm"))))
+
+(defmethod get-ordinal (number token (locale locale-ar-sa))
+  (declare (ignore token locale))
+  (format nil "~d" number))
+
+(defmethod make-locale ((class (eql :ar-sa)))
+  (make-instance 'locale-ar-sa))

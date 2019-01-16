@@ -5,12 +5,12 @@
    :first-day-of-week 1
     :month-names
     #("" "enero" "febrero" "marzo" "abril" "mayo" "junio" "julio"
-      "agosto" "septiembre" "octubre" "noviembre" "diciembre'")
+      "agosto" "septiembre" "octubre" "noviembre" "diciembre")
     :short-month-names
     #("" "ene" "feb" "mar" "abr" "may" "jun" "jul" "ago" "sep"
       "oct" "nov" "dic'")
     :weekday-names
-    #("domingo" "lunes" "martes" "miércoles" "jueves" "viernes" "sábado'")
+    #("domingo" "lunes" "martes" "miércoles" "jueves" "viernes" "sábado")
     :short-weekday-names
     #("dom." "lun." "mar." "mié." "jue." "vie." "sáb.")
     :minimal-weekday-names

@@ -13,13 +13,13 @@
      (:file "local-time-locale")
      (:module "locales"
 	      :components
-              (; (:file "ar")     ;; Saudi Arabia Arabic
-	      ; (:file "ar-ae")  ;; United Arab Emirates Arabic
-	      ; (:file "ar-eg")  ;; Egypt Arabic
-	      ; (:file "ar-ma")  ;; Morocco Arabic
-	      ; (:file "ar-qa")  ;; Qatar Arabic
-	      ; (:file "ar-sa")  ;; Saudi Arabia Arabic
-	      ; (:file "ar-tn")  ;; Tunisia Arabic
+              ((:file "ar")     ;; Saudi Arabia Arabic
+	       (:file "ar-ae")  ;; United Arab Emirates Arabic
+	       (:file "ar-eg")  ;; Egypt Arabic
+	       (:file "ar-ma")  ;; Morocco Arabic
+	       (:file "ar-qa")  ;; Qatar Arabic
+	       (:file "ar-sa")  ;; Saudi Arabia Arabic
+	       (:file "ar-tn")  ;; Tunisia Arabic
 	       (:file "da")     ;; Denmark Danish
 	       (:file "da-dk")  ;; Denmark Danish
 	       (:file "de")     ;; Germany German
