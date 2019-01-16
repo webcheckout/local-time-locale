@@ -23,7 +23,7 @@
 
 (defmethod get-ordinal (number token (locale locale-ar-ae))
   (declare (ignore token locale))
-  (format nil "%d" number))
+  (format nil "~d" number))
 
 (defmethod make-locale ((class (eql :ar-ae)))
   (make-instance 'locale-ar-ae))
