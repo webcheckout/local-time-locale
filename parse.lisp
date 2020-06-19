@@ -110,6 +110,6 @@
     (handler-case
 	(progn
 	  (return-from parse-timestamp (parse-timestamp-from-format string f :timezone timezone :locale locale)))
-      (local-time-locale-error ()))
-    (parsing-error "Failed to parse timestamp with any expected parsing formats")))
+      (local-time-locale-error ())))
+  (parsing-error "Failed to parse timestamp with any expected parsing formats"))
 
