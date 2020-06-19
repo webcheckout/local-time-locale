@@ -49,5 +49,13 @@
 	  ((< hm 1800) "下午")
 	  (t "晚上"))))
 
+(defmethod meridiems ((locale locale-zh))
+  `(("凌晨" ,#'%am-conversion)
+    ("早上" ,#'%am-conversion)
+    ("上午" ,#'%am-conversion)
+    ("中午" ,(lambda (hour) (if (= hour 11) (%am-conversion hour) (%pm-conversion hour))))
+    ("下午" ,#'%pm-conversion)
+    ("晚上" ,#'%pm-conversion)))
+
 (defmethod make-locale ((class (eql :zh)))
   (make-instance 'locale-zh))

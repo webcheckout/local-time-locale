@@ -29,5 +29,9 @@
   (declare (ignore upcase locale))
   (if (< hour 12) "오전" "오후"))
 
+(defmethod meridiems ((locale locale-ko))
+  `(("오전" ,#'%am-conversion)
+    ("오후" ,#'%pm-conversion)))
+
 (defmethod make-locale ((class (eql :ko)))
   (make-instance 'locale-ko))

@@ -25,5 +25,9 @@
   (declare (ignore upcase locale))
   (if (< hour 12) "午前" "午後"))
 
+(defmethod meridiems ((locale locale-ja))
+  `(("午前" ,#'%am-conversion)
+    ("午後" ,#'%pm-conversion)))
+
 (defmethod make-locale ((class (eql :ja)))
   (make-instance 'locale-ja))

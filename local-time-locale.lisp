@@ -71,12 +71,36 @@
       (if (< hour 12) "AM" "PM")
       (if (< hour 12) "am" "pm")))
 
+(defun %am-conversion (hour)
+  (cond ((= hour 0) (meridiem-error "Invalid hour 0 for meridiem"))
+	((= hour 12) 0)
+	((< hour 12) hour)
+	(t (meridiem-error "Invalid hour ~A for meridiem" hour))))
+
+(defun %pm-conversion (hour)
+  (cond ((= hour 0) (meridiem-error "Invalid hour 0 for meridiem"))
+	((= hour 12) 12)
+	((< hour 12) (+ hour 12))
+	(t  (meridiem-error "Invalid hour ~A for meridiem" hour))))
+	
+(defmethod meridiems ((locale locale))
+  `(("AM" ,#'%am-conversion)
+    ("Am" ,#'%am-conversion)
+    ("am" ,#'%am-conversion)
+    ("A"  ,#'%am-conversion)
+    ("a"  ,#'%am-conversion)
+    ("PM" ,#'%pm-conversion)
+    ("Pm" ,#'%pm-conversion)
+    ("pm" ,#'%pm-conversion)
+    ("P"  ,#'%pm-conversion)
+    ("p"  ,#'%pm-conversion)))
+
 (defmethod get-ordinal (number format (locale locale))
   (declare (ignore format locale))
   (format nil "~d~a" number
           (if (<= 11 number 13)
-              "th"
-              (case (mod number 10)
+              "th" 
+              (case (mod number 10) 
                 (1 "st")
                 (2 "nd")
                 (3 "rd")
@@ -89,7 +113,12 @@
   (cdr (assoc key (long-date-formats locale) :test 'string=)))
 
 (defmethod set-long-date-format (key (locale locale) string)
-  (setf (cdr (assoc key (long-date-formats locale) :test 'string=)) string)) 
+  (setf (cdr (assoc key (long-date-formats locale) :test 'string=)) string))
+
+(defvar *timestamp-parsing-formats* '("L LT" "LT L" "L"))
+
+(defmethod timestamp-parsing-formats ((locale locale))
+  *timestamp-parsing-formats*)
 
 (defmethod make-locale (name)
   nil)
