@@ -47,11 +47,9 @@
 
 (define-parse-function ("YYYY")
   (multiple-value-bind (v rest count)
-      (%%read-next-integer string 1 4)
-    (if (and (< v 1900)
-	     (< count 4))
-	(setf *year* (+ 1900 v))
-	(setf *year* v))
+      (%%read-next-integer string 4 4)
+    (declare (ignore count))
+    (setf *year* v)
     rest))
 
 (define-parse-function ("M" "MM")
@@ -104,7 +102,7 @@
     (when *meridiem*
       (setf *hours* (funcall *meridiem* *hours*)))
     (lt::encode-timestamp 0 0 *minutes* *hours* *day* *month* *year* :timezone timezone)))
-		       
+
 (defun parse-timestamp (string &key (timezone local-time::*default-timezone*) (locale *default-locale*))
   (dolist (f (timestamp-parsing-formats locale))
     (handler-case
@@ -112,4 +110,3 @@
 	  (return-from parse-timestamp (parse-timestamp-from-format string f :timezone timezone :locale locale)))
       (local-time-locale-error ())))
   (parsing-error "Failed to parse timestamp with any expected parsing formats"))
-
