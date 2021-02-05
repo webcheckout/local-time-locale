@@ -3,7 +3,7 @@
 
 (defsystem :local-time-locale
   :description "local-time-locale"
-  :version "1.1"
+  :version "1.2"
   :author "WebCheckout, Inc."
   :license "MIT"
   :depends-on (:local-time :data-types)
@@ -37,6 +37,9 @@
 	     (:file "fr")     ;; French
 	     (:file "fr-ca")  ;; Canada French
 	     (:file "fr-fr")  ;; France French
+	     (:file "it")     ;; Italian 
+	     (:file "it-it")  ;; Italy Italian
+	     (:file "it-ch")  ;; Switzerland Italian
 	     (:file "ja")     ;; Japanese
 	     (:file "ja-jp")  ;; Japan Japanese
 	     (:file "ko")     ;; Korean
