@@ -26,17 +26,25 @@
 	     (:file "de")     ;; German
 	     (:file "de-at")  ;; Austria German
 	     (:file "de-de")  ;; Germany German
+	     (:file "el")     ;; Greek
+	     (:file "el-el")  ;; Greece Greek
 	     (:file "en")     ;; English
  	     (:file "en-au")  ;; Australia English
 	     (:file "en-ca")  ;; Canada English
 	     (:file "en-gb")  ;; Great Britain English
-	     ; (:file "en-hk")  ;; Hong Kong English
+	     ;; (:file "en-hk")  ;; Hong Kong English
+	     (:file "en-nz")  ;; New Zealand English
 	     (:file "en-us")  ;; United States English
 	     (:file "es")     ;; Spanish
+	     (:file "es-do")  ;; Dominican Spanish
 	     (:file "es-es")  ;; Spain Spanish
+	     (:file "es-mx")  ;; Mexico Spanish
+	     (:file "es-us")  ;; United States Spanish
 	     (:file "fr")     ;; French
 	     (:file "fr-ca")  ;; Canada French
 	     (:file "fr-fr")  ;; France French
+	     (:file "id")     ;; Indonesian 
+	     (:file "id-id")  ;; Indonesia Indonesian
 	     (:file "it")     ;; Italian 
 	     (:file "it-it")  ;; Italy Italian
 	     (:file "it-ch")  ;; Switzerland Italian
@@ -53,6 +61,8 @@
 	     (:file "pt")     ;; Portuguese
 	     (:file "pt-br")  ;; Brazil Portuguese
 	     (:file "pt-pt")  ;; Portual Portuguese
+	     (:file "ro")     ;; Romanian
+	     (:file "ro-ro")  ;; Romania Romanian
 	     (:file "sv")     ;; Swedish
 	     (:file "sv-se")  ;; Sweden Swedish
 	     (:file "zh")     ;; Chinese

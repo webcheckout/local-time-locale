@@ -61,7 +61,7 @@
 	     `((setf (gethash ,(format nil "~ao" key) *format-functions*)
 		     (lambda (out timestamp nsec sec minute hour day month year weekday daylight-p offset abbrev format)
 		       (declare #+sbcl (sb-ext:muffle-conditions style-warning))
-		       (ordinal format ,@body)))))))
+		       (ordinal ,@body format)))))))
 
 (define-format-function ("M" :ordinal t :padded t)
   month)
