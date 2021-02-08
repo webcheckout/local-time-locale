@@ -27,7 +27,7 @@
 	     (:file "de-at")  ;; Austria German
 	     (:file "de-de")  ;; Germany German
 	     (:file "el")     ;; Greek
-	     (:file "el-el")  ;; Greece Greek
+	     (:file "el-gr")  ;; Greece Greek
 	     (:file "en")     ;; English
  	     (:file "en-au")  ;; Australia English
 	     (:file "en-ca")  ;; Canada English
