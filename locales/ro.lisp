@@ -26,3 +26,5 @@
   (declare (ignore token locale))
   number)
 
+(defmethod make-locale ((class (eql :ro)))
+  (make-instance 'locale-ro))
