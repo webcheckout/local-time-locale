@@ -5,10 +5,10 @@
   (:default-initargs
    :first-day-of-week 1
     :month-names
-    #("januari" "februari" "mars" "april" "maj" "juni" "juli"
+    #("" "januari" "februari" "mars" "april" "maj" "juni" "juli"
       "augusti" "september" "oktober" "november" "december")
     :short-month-names
-    #("jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec")
+    #("" "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec")
     :weekday-names
     #("söndag" "måndag" "tisdag" "onsdag" "torsdag" "fredag" "lördag")
     :short-weekday-names
